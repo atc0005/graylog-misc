@@ -6,14 +6,14 @@ We run an internal Graylog appliance based off of the official 2.x OVA image.
 We've run it a few years now for small internal testing purposes and are happy
 with the results. We recently upgraded the OS from Ubuntu 14.04 to 16.04 and
 Graylog no longer automatically started at boot. This was because Upstart was
-used to handle starting/stopping all required daemons. Thankfully the existing
+used to handle starting/stopping all required daemons. Thankfully, the existing
 shell script which handles the startup process still works when called
 directly and the `graylog-ctl` script still safely shuts everything down.
 
 While an upgrade path from the 2.x OVA-based Graylog installation to a 3.0
-installation toisn't officially supported, we are able to at least run an
+installation isn't officially supported, we are able to at least run an
 updated OS until we have time to manually port the settings/data over to a
-fresh installation.
+fresh installation of Graylog.
 
 ## Workaround
 
