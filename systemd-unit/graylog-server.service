@@ -1,0 +1,36 @@
+# https://github.com/atc0005/graylog-misc
+
+#
+# References
+#
+# https://gist.github.com/ejangi/6944fcfbbccfa98d9a9e
+# https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+# https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Process%20Properties
+# https://ss64.com/bash/ulimit.html
+# http://smarden.org/runit/runsvdir.8.html
+#
+
+[Unit]
+Description=Graylog 2.x runsvdir wrapper
+After=network.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+
+Restart=on-failure
+
+# If automatically restarting the service is enabled, this specifies the
+# amount of time to wait before attempting to restart the service
+RestartSec=20
+
+# If runsvdir receives a TERM signal, it exits with 0 immediately.
+# If runsvdir receives a HUP signal, it sends a TERM signal to each runsv(8)
+# process it is monitoring and then exits with 111.
+SuccessExitStatus=111
+
+ExecStart=/opt/graylog/embedded/bin/runsvdir-start
+ExecStop=/usr/bin/graylog-ctl stop
+
+[Install]
+WantedBy=multi-user.target
